@@ -100,7 +100,7 @@ export default function SidePanel({ selectedState, setSelectedState, setView }) 
           <span className="chip">🍛 Food</span>
           <p>
             {data?.food?.slice(0, 5).map((f) => f.title).join(", ")}
-            {data?.food?.length > 5 && " + more"}
+            {data?.food?.length > 5 && ""}
           </p>
         </div>
 
@@ -108,17 +108,17 @@ export default function SidePanel({ selectedState, setSelectedState, setView }) 
           <span className="chip">🎉 Festival</span>
           <p>
             {data?.festivals?.slice(0, 5).map((f) => f.title).join(", ")}
-            {data?.festivals?.length > 5 && " + more"}
+            {data?.festivals?.length > 5 && "...."}
           </p>
         </div>
 
         <div className="highlight">
-          <span className="chip">👘 Dress</span>
+          <span className="chip">👘 Traditional Attire</span>
           <p>{data?.dress}</p>
         </div>
 
         <div className="highlight">
-          <span className="chip">🐾 Animal</span>
+          <span className="chip">🐾 State Animal</span>
           <p>{data?.stateAnimal}</p>
         </div>
       </div>
