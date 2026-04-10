@@ -71,7 +71,7 @@ export default function ItemModal({ selectedItem, setSelectedItem }) {
 
                 {/* DESCRIPTION */}
                 <p>
-                    {selectedItem.description ||
+                    {
                         selectedItem.history ||
                         selectedItem.origin ||
                         selectedItem.significance}
