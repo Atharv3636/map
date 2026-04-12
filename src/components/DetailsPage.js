@@ -5,6 +5,9 @@ import ItemModal from "./ItemModal";
 
 export default function DetailsPage({ selectedState, setView }) {
   const [selectedItem, setSelectedItem] = useState(null);
+  const categories = ["Music", "Dance", "Art"];
+
+
 
   if (!selectedState) return null;
 
@@ -41,22 +44,34 @@ export default function DetailsPage({ selectedState, setView }) {
       </div>
 
       {/* ================= CULTURE ================= */}
-      <h2>Culture</h2>
-      <div className="grid">
-        {data?.culture?.map((item, i) => (
-          <div
-            key={i}
-            className="card"
-            onClick={() => setSelectedItem(item)}
-          >
-            <img src={item.image} alt="" />
-            <h3>{item.title}</h3>
-            <p>{item.origin}</p>
-          </div>
-        ))}
-      </div>
 
-      
+      <h2>Culture</h2>
+
+      {categories.map((cat) => (
+        <div key={cat}>
+          <h2 style={{ textTransform: "capitalize" }}>{cat}</h2>
+
+          <div className="grid">
+            {data?.culture
+              ?.filter((item) => item.category === cat)
+              .map((item, i) => (
+                <div
+                  key={i}
+                  className="card"
+                  onClick={() => setSelectedItem(item)}
+                >
+                  <img src={item.image} alt="" />
+                  <h3>{item.title}</h3>
+                  <p>{item.origin}</p>
+                </div>
+              ))}
+          </div>
+        </div>
+      ))}
+
+
+
+
 
       {/* ================= FESTIVALS ================= */}
       <h2>Festivals</h2>
@@ -75,7 +90,7 @@ export default function DetailsPage({ selectedState, setView }) {
       </div>
 
       {/* ================= HiddenFestivals ================= */}
-       <h2>Hidden Festivals</h2>
+      <h2>Hidden Festivals</h2>
       <div className="grid">
         {data?.hiddenFestivals?.map((item, i) => (
           <div

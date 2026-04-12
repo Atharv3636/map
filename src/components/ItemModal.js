@@ -26,11 +26,11 @@ export default function ItemModal({ selectedItem, setSelectedItem }) {
     const activities = parseJSON(selectedItem.activities) || [];
 
     // ✅ FACTS FIX (TEXT → ARRAY)
-    const facts = Array.isArray(selectedItem.facts)
-        ? selectedItem.facts
-        : typeof selectedItem.facts === "string"
-            ? selectedItem.facts.split(";").map(f => f.trim())
-            : [];
+    // const facts = Array.isArray(selectedItem.facts)
+    //     ? selectedItem.facts
+    //     : typeof selectedItem.facts === "string"
+    //         ? selectedItem.facts.split(";").map(f => f.trim())
+    //         : [];
 
     return (
         <div
@@ -71,10 +71,10 @@ export default function ItemModal({ selectedItem, setSelectedItem }) {
 
                 {/* DESCRIPTION */}
                 <p>
-                    {
+                    {/* {selectedItem.description ||
                         selectedItem.history ||
                         selectedItem.origin ||
-                        selectedItem.significance}
+                        selectedItem.significance} */}
                 </p>
                 {/* ================= ABOUT ================= */}
                 {selectedItem.about && (
@@ -143,7 +143,7 @@ export default function ItemModal({ selectedItem, setSelectedItem }) {
                     </>
                 )}
 
-                {/* ✅ FACTS FIX */}
+                {/* ✅ FACTS FIX
                 {facts.length > 0 && (
                     <>
                         <h3>Facts</h3>
@@ -153,7 +153,7 @@ export default function ItemModal({ selectedItem, setSelectedItem }) {
                             ))}
                         </ul>
                     </>
-                )}
+                )} */}
 
                 {/* ✅ HIGHLIGHTS FIX */}
                 {highlights.length > 0 && (
