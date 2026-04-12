@@ -24,7 +24,7 @@ export default function States() {
         <div key={s.id}>
           <h3>{s.name}</h3>
           <p>{s.description}</p>
-          <img src={s.image} width="200" />
+          <img src={s.image} width="200" alt="" />
         </div>
       ))}
     </div>
