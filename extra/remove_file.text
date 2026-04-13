@@ -1,0 +1,27 @@
+remove zoom efect of map {
+app.js {
+    16 to 19
+    127 and 128 , 134 and 135
+}
+MapView{
+    32 , 33 
+    80 to 85
+}
+SidePanel{
+    remove the name line 6 zoom, setZoom
+    35 to 38 
+}
+
+}
+🆕
+for city marker / dots
+{
+MapView.js
+38 to 45
+124 to 151
+}
+🆕
+
+{/* District Boundaries */} 127 to 157
+{/* City Markers */} 159 to 181 , 40 to 49
+

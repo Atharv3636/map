@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../styles/SidePanel.css";
+import { useNavigate } from "react-router-dom";
 
-export default function SidePanel({ selectedState, setSelectedState, setView }) {
+
+export default function SidePanel({ selectedState, setSelectedState, zoom, setZoom }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  
+  const navigate = useNavigate();
   // ✅ SAFE DATA ACCESS
   const data = selectedState?.data;
   const images = data?.tourism?.map((item) => item.image) || [];
@@ -46,6 +49,7 @@ export default function SidePanel({ selectedState, setSelectedState, setView }) 
             <span
               key={i}
               className={`dot ${i === currentIndex ? "active" : ""}`}
+              onClick={() => setCurrentIndex(i)}
             />
           ))}
         </div>
@@ -85,7 +89,7 @@ export default function SidePanel({ selectedState, setSelectedState, setView }) 
         <div className="mini-cards">
           {data?.tourism?.slice(0, 3).map((item, i) => (
             <div key={i} className="mini-card">
-              <img src={item.image} alt={item.title} />
+              <img src={item.image} alt={item.title}  loading="lazy"/>
               <p>{item.title}</p>
             </div>
           ))}
@@ -127,14 +131,26 @@ export default function SidePanel({ selectedState, setSelectedState, setView }) 
       <div className="bottom-actions">
         <button
           className="reset"
-          onClick={() => setSelectedState(null)}
+          onClick={() =>{
+            setSelectedState(null);
+            setZoom({
+                center: [80, 22],
+                scale: 900
+              });
+          }}
+          
         >
           Reset
         </button>
 
         <button
           className="more"
-          onClick={() => setView("details")}
+          onClick={() => {
+            if (!selectedState){
+              alert("Please select a state first!");
+            };
+            navigate(`/details/${selectedState.name.toLowerCase()}`) /*setView("details")*/}
+          }
         >
           Explore More →
         </button>

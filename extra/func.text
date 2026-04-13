@@ -1,0 +1,4 @@
+control zoom in map 
+use zoom level in MapView.js file{  scale: 1000  } 
+
+city marker : st marker on city 

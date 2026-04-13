@@ -2,28 +2,38 @@ import React, { useState } from "react";
 import "../styles/DetailsPage.css";
 
 import ItemModal from "./ItemModal";
+import { useNavigate , useParams } from "react-router-dom";
 
-export default function DetailsPage({ selectedState, setView }) {
+export default function DetailsPage({ statesData }) {
   const [selectedItem, setSelectedItem] = useState(null);
   const categories = ["Music", "Dance", "Art"];
 
+  // ✅ GETTING URL PARAMS and NAVIGATE FUNCTION
+  const { stateName } = useParams();
+  const navigate = useNavigate();
 
 
-  if (!selectedState) return null;
 
-  const data = selectedState.data;
+  const data = statesData[stateName];
+  if (!data) {
+  console.log("State not found:", stateName);
+  console.log("Available keys:", Object.keys(statesData));
+  return <h2>Loading...</h2>;
+}
   
 
   return (
     <div className="details-page">
 
       {/* BACK BUTTON */}
-      <button className="back-btn" onClick={() => setView("map")}>
+      <button className="back-btn" onClick={() => navigate("/")}>
         ← Back
       </button>
 
       {/* TITLE */}
-      <h1 className="details-title">{selectedState.name}</h1>
+      {/* <h1 className="details-title">{stateName.toUpperCase()}</h1> */}
+      <h1 className="details-title">{stateName.charAt(0).toUpperCase() + stateName.slice(1)}</h1>
+           
 
       {/* ABOUT */}
       <p className="details-about">{data?.about}</p>
@@ -37,7 +47,7 @@ export default function DetailsPage({ selectedState, setView }) {
             className="card"
             onClick={() => setSelectedItem(item)}
           >
-            <img src={item.image} alt="" />
+            <img src={item.image} alt="" loading="lazy" />
             <h3>{item.title}</h3>
             <p>{item.history}</p>
           </div>

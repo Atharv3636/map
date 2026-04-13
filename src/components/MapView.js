@@ -1,13 +1,18 @@
-import React from "react";
+import {React} from "react";
 import "../styles/MapView.css";
 import {
   ComposableMap,
   Geographies,
   Geography
 } from "react-simple-maps";
+import { geoCentroid } from "d3-geo";
+import { Marker } from "react-simple-maps";
 
-const geoUrl =
-  "https://cdn.jsdelivr.net/npm/geojson-india@0.0.2/india.json";
+// GEOJSON URLS
+const geoUrl = "https://cdn.jsdelivr.net/npm/geojson-india@0.0.2/india.json";
+
+// district level geojson for zoom effect (optional, can be used for more detailed view when zoomed in)
+const districtGeoUrl = "https://raw.githubusercontent.com/geohacker/india/master/district/india_district.geojson";
 
 // Normalize names
 const normalizeStateName = (name) => {
@@ -17,7 +22,9 @@ const normalizeStateName = (name) => {
     "Jammu and Kashmir": "Jammu & Kashmir",
     "Dadra and Nagar Haveli and Daman and Diu":
       "Dadra & Nagar Haveli and Daman & Diu",
-    Odisha: "Odisa"
+
+    // Odisha: "Odisha" is already correct, but adding here for consistency and future-proofing,  chaged for borders
+    Odisha: "Odisha"
   };
   return map[name] || name;
 };
@@ -27,17 +34,37 @@ export default function MapView({
   selectedState,
   setSelectedState,
   hoveredState,
-  setHoveredState
+  setHoveredState,
+  zoom,
+  setZoom
 }) {
+
+  // for city markers
+  const isZoomedIn = zoom.scale > 1500;
+  // test data for cities in Maharashtra
+  const cities = selectedState?.name === "Maharashtra"
+  ? [
+      { name: "Mumbai", coordinates: [72.8777, 19.0760] },
+      { name: "Pune", coordinates: [73.8567, 18.5204] },
+      { name: "Nagpur", coordinates: [79.0882, 21.1458] }
+    ]
+  : [];
+
   return (
+    
     <div className="map-container">
       {hoveredState && (
         <div className="tooltip">{hoveredState}</div>
-      )}
+      )}  
 
       <ComposableMap
         projection="geoMercator"
-        projectionConfig={{ scale: 900, center: [80, 22] }}
+        // projectionConfig={{ scale: 900, center: [80, 22] }}
+        // for zooming and centering on click effect
+         projectionConfig={{
+          scale: zoom.scale,
+          center: zoom.center
+  }}
       >
         <Geographies geography={geoUrl}>
           {({ geographies }) =>
@@ -57,7 +84,7 @@ export default function MapView({
                   onMouseEnter={() => setHoveredState(rawName)}
                   onMouseLeave={() => setHoveredState("")}
                   onClick={() => {
-                    const data = STATES[normalized];
+                    const data = STATES[normalized.toLowerCase()];
 
                     console.log("CLICK:", normalized);
                     console.log("DATA:", data);
@@ -66,6 +93,14 @@ export default function MapView({
                       alert("No data found in DB for this state");
                       return;
                     }
+
+                    // zoom in on click 🔥 GET CENTER OF STATE
+                    const center = geoCentroid(geo);
+                    setZoom({
+                      center: center,
+                      // defalt set by team is 1000 but for the marker to show up we need to set it to 2000
+                      scale: 2000
+                    }); 
 
                     setSelectedState({ name: normalized, data });
                   }}
@@ -91,7 +126,70 @@ export default function MapView({
             })
           }
         </Geographies>
+          {/* District Boundaries */}
+                    {isZoomedIn && selectedState && (
+            <Geographies geography={districtGeoUrl}>
+              {({ geographies }) =>
+                geographies
+                  .filter((geo) => {
+                    const geoState = geo.properties?.NAME_1?.toLowerCase().trim();
+                    const selected = selectedState?.name?.toLowerCase().trim();
+                    return geoState === selected;
+                    
+                  })
+                  .map((geo) => (
+                    <Geography
+                      key={geo.rsmKey}
+                      geography={geo}
+                      style={{
+                        default: {
+                          fill: "transparent",
+                          stroke: "red",
+                          strokeWidth: 0.1,
+                        },hover: {
+                          fill:
+                            isZoomedIn
+                              ? "#3a76ec"
+                              : "#60a5fa",
+                              stroke: "black",
+                              strokeWidth: 0.5,
+                        }
+                      }}
+                    />
+                  ))
+              }
+            </Geographies>
+          )}
+
+        {/* City Markers */}
+              {isZoomedIn &&cities.map((city, i) => (
+                  <Marker key={i} coordinates={city.coordinates}>
+                    <g>
+                      {/* 🔴 DOT */}
+                      <circle r={4} fill="#ef4444" />
+              
+                        {/* 🏷️ CITY NAME */}
+                        <text
+                          textAnchor="middle"
+                          y={-10}
+                          style={{
+                            fontSize: "10px",
+                            fill: "white",
+                            pointerEvents: "none"
+                          }}
+                        >
+                          {city.name}
+                        </text>
+                      </g>
+            
+                  </Marker>
+        ))}
+ 
+
+
+  
       </ComposableMap>
+      
     </div>
   );
 }

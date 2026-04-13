@@ -43,29 +43,36 @@ export default function App() {
       return;
     }
 
-    console.log("🔥 RAW DATA:", data);
+    // print name from data
+    // data.forEach((state) => {
+    //   console.log("🔥 STATE NAME:", state.name);
+    // });
+    // print all stae names in data
+    const stateNames = data.map((state) => state.name);
+    console.log("🔥 ALL STATE NAMES:", stateNames);
+    console.log("🔥 raw data from db:", data);
+    
+    
+    // console.log("Available keys:", Object.keys(statesData));
 
     const formatted = {};
 
     data.forEach((state) => {
-      formatted[state.name] = {
+      formatted[state.name.toLowerCase()] = {
         about: state.description,
         capital: state.capital,
         language: state.language,
         population: state.population,
-
         tourism: state.places || [],
         culture: state.culture || [],
         festivals: state.festivals || [],
         food: state.foods || [],
         hiddenfestivals: state.hiddenfestivals || [],
         spiritual: state.spiritual_places || [],
-        
-        
       };
     });
 
-    console.log("✅ FORMATTED:", formatted);
+    // console.log("✅ FORMATTED:", formatted);
 
     setStatesData(formatted);
     setLoading(false);
@@ -76,33 +83,68 @@ export default function App() {
   }
 
   return (
-    <>
-      {view === "map" && (
-        <div className={`app-container ${selectedState ? "active" : ""}`}>
+    // <>
+    //   {view === "map" && (
+    //     <div className={`app-container ${selectedState ? "active" : ""}`}>
 
+    //       <MapView
+    //         STATES={statesData}   // ✅ DB data here
+    //         selectedState={selectedState}
+    //         setSelectedState={setSelectedState}
+    //         hoveredState={hoveredState}
+    //         setHoveredState={setHoveredState}
+    //       />
+
+    //       <SidePanel
+    //         selectedState={selectedState}
+    //         setSelectedState={setSelectedState}
+    //         setView={setView}
+    //       />
+
+    //     </div>
+    //   )}
+
+    //   {view === "details" && (
+    //     <DetailsPage
+    //       selectedState={selectedState}
+    //       setView={setView}
+    //     />
+    //   )}
+    // </>
+   <Routes>
+
+    {/* MAP PAGE */}
+    <Route
+      path="/"
+      element={
+        <div className={`app-container ${selectedState ? "active" : ""}`}>
           <MapView
-            STATES={statesData}   // ✅ DB data here
+            STATES={statesData}
             selectedState={selectedState}
             setSelectedState={setSelectedState}
             hoveredState={hoveredState}
             setHoveredState={setHoveredState}
+            zoom={zoom}
+            setZoom={setZoom}
           />
 
           <SidePanel
             selectedState={selectedState}
             setSelectedState={setSelectedState}
-            setView={setView}
+            zoom={zoom}
+            setZoom={setZoom}
           />
-
         </div>
-      )}
+      }
+    />
 
-      {view === "details" && (
-        <DetailsPage
-          selectedState={selectedState}
-          setView={setView}
-        />
-      )}
-    </>
+    {/* DETAILS PAGE */}
+   <Route
+  path="/details/:stateName"
+  element={<DetailsPage statesData={statesData} />}
+/>
+  </Routes>
+      
+
   );
 }

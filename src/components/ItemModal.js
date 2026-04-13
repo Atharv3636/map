@@ -54,6 +54,7 @@ export default function ItemModal({ selectedItem, setSelectedItem }) {
                     src={selectedItem.image}
                     alt=""
                     className="modal-img"
+                    loading="lazy"
                 />
 
                 {/* TITLE */}

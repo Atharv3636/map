@@ -2,6 +2,8 @@
 .map-container {
   flex: 1;
   position: relative;
+  /* for zooming and centering effect */
+  transition: all 0.5s ease-in-out;
 }
 
 /* SVG MAP */
@@ -21,6 +23,7 @@
   border-radius: 6px;
   font-size: 13px;
 }
+
 
 /* REMOVE OUTLINE */
 svg:focus,
