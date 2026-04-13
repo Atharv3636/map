@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../styles/DetailsPage.css";
 
 import ItemModal from "./ItemModal";
-import { useNavigate , useParams } from "react-router-dom";
 
 export default function DetailsPage({ statesData }) {
   const [selectedItem, setSelectedItem] = useState(null);
