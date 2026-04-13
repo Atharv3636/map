@@ -25,10 +25,6 @@ export default function DetailsPage({ statesData }) {
   return (
     <div className="details-page">
 
-      {/* BACK BUTTON */}
-      <button className="back-btn" onClick={() => navigate("/")}>
-        ← Back
-      </button>
 
       {/* TITLE */}
       {/* <h1 className="details-title">{stateName.toUpperCase()}</h1> */}

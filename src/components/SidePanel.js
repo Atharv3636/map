@@ -9,7 +9,7 @@ export default function SidePanel({ selectedState, setSelectedState, zoom, setZo
   const navigate = useNavigate();
   // ✅ SAFE DATA ACCESS
   const data = selectedState?.data;
-  const images = data?.tourism?.map((item) => item.image) || [];
+  const images = data?.tourism?.slice(0, 5).map((item) => item.image) || [];
 
   /* ✅ HOOK ALWAYS AT TOP (FIXED ERROR) */
   useEffect(() => {
