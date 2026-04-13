@@ -12,7 +12,7 @@ import { Marker } from "react-simple-maps";
 const geoUrl = "https://cdn.jsdelivr.net/npm/geojson-india@0.0.2/india.json";
 
 // district level geojson for zoom effect (optional, can be used for more detailed view when zoomed in)
-const districtGeoUrl = "https://raw.githubusercontent.com/geohacker/india/master/district/india_district.geojson";
+// const districtGeoUrl = "https://raw.githubusercontent.com/geohacker/india/master/district/india_district.geojson";
 
 // Normalize names
 const normalizeStateName = (name) => {
@@ -20,10 +20,9 @@ const normalizeStateName = (name) => {
     "Andaman and Nicobar": "Andaman & Nicobar",
     "NCT of Delhi": "Delhi",
     "Jammu and Kashmir": "Jammu & Kashmir",
-    "Dadra and Nagar Haveli and Daman and Diu":
-      "Dadra & Nagar Haveli and Daman & Diu",
+    "Dadra and Nagar Haveli and Daman and Diu": "Dadra & Nagar Haveli and Daman & Diu",
 
-    // Odisha: "Odisha" is already correct, but adding here for consistency and future-proofing,  chaged for borders
+    // Odisha: "Odisha" is already correct, but adding here for consistency and future-proofing,  changed for borders
     Odisha: "Odisha"
   };
   return map[name] || name;
@@ -46,7 +45,8 @@ export default function MapView({
   ? [
       { name: "Mumbai", coordinates: [72.8777, 19.0760] },
       { name: "Pune", coordinates: [73.8567, 18.5204] },
-      { name: "Nagpur", coordinates: [79.0882, 21.1458] }
+      { name: "Nagpur", coordinates: [79.0882, 21.1458] },
+      { name: "sangli", coordinates: [74.5802, 16.8713] }
     ]
   : [];
 
@@ -126,8 +126,9 @@ export default function MapView({
             })
           }
         </Geographies>
+        
           {/* District Boundaries */}
-                    {isZoomedIn && selectedState && (
+                    {/* {isZoomedIn && selectedState && (
             <Geographies geography={districtGeoUrl}>
               {({ geographies }) =>
                 geographies
@@ -159,7 +160,7 @@ export default function MapView({
                   ))
               }
             </Geographies>
-          )}
+          )} */}
 
         {/* City Markers */}
               {isZoomedIn &&cities.map((city, i) => (

@@ -14,14 +14,7 @@ SidePanel{
 
 }
 🆕
-for city marker / dots
-{
-MapView.js
-38 to 45
-124 to 151
-}
-🆕
-
 {/* District Boundaries */} 127 to 157
+🆕
 {/* City Markers */} 159 to 181 , 40 to 49
 

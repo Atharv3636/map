@@ -19,7 +19,7 @@ export default function SidePanel({ selectedState, setSelectedState, zoom, setZo
       setCurrentIndex((prev) =>
         prev === images.length - 1 ? 0 : prev + 1
       );
-    }, 3000);
+    }, 3500);
 
     return () => clearInterval(interval);
   }, [images.length]);
