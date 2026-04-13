@@ -5,13 +5,18 @@ import { supabase } from "./api/supabaseClient";
 import MapView from "./components/MapView";
 import SidePanel from "./components/SidePanel";
 import DetailsPage from "./components/DetailsPage";
+import { Routes, Route, } from "react-router-dom";
 
 export default function App() {
   const [statesData, setStatesData] = useState({});
   const [selectedState, setSelectedState] = useState(null);
   const [hoveredState, setHoveredState] = useState("");
-  const [view, setView] = useState("map");
   const [loading, setLoading] = useState(true);
+  // for zoom effect on map
+  const [zoom, setZoom] = useState({
+    center: [80, 22],
+    scale: 900
+  });
 
   useEffect(() => {
     fetchAllData();
