@@ -10,7 +10,7 @@ export default function DetailsPage({ statesData }) {
 
   // ✅ GETTING URL PARAMS and NAVIGATE FUNCTION
   const { stateName } = useParams();
-  const navigate = useNavigate();
+
 
 
 
