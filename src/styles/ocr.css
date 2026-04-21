@@ -1,0 +1,317 @@
+/* Background */
+.ocr-wrapper {
+  background: #eef3ff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  align-items: flex-start;
+}
+
+/* Main Card */
+.ocr-container {
+  width: 100%;
+  max-width: 850px;
+  background: #ffffff;
+  padding: 40px 35px;
+  border-radius: 22px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/* Titles */
+.ocr-title {
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0;
+  color: #000;
+}
+
+.ocr-subtitle {
+  margin: 8px 0 22px;
+  color: #555;
+  font-size: 14px;
+}
+
+/* Tabs */
+.ocr-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.ocr-tab {
+  background: #f0f0f0;
+  border: none;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+  color: #444;
+}
+
+.ocr-tab.active {
+  background: #5b4bff;
+  color: white;
+}
+
+/* Upload Box */
+.ocr-upload-box {
+  border: 2px dashed #c2c8e6;
+  background: #fafbff;
+  padding: 50px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 16px;
+  color: #555;
+}
+
+.upload-icon {
+  font-size: 40px;
+  color: #777;
+  margin-bottom: 6px;
+}
+
+/* Camera */
+.ocr-camera-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ocr-video {
+  width: 100%;
+  border-radius: 14px;
+  border: 2px solid #d6dcf3;
+}
+
+.capture-btn {
+  padding: 10px 16px;
+  border: none;
+  background: #5b4bff;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Preview */
+.ocr-preview img {
+  width: 100%;
+  max-height: 400px;
+  border-radius: 18px;
+  margin-top: 16px;
+}
+
+/* Extract Button */
+.scan-btn {
+  margin-top: 18px;
+  padding: 14px 22px;
+  font-size: 16px;
+  font-weight: 600;
+  background: #5b4bff;
+  color: white;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Progress Bar */
+.ocr-progress {
+  width: 100%;
+  height: 6px;
+  background: #ddd;
+  border-radius: 8px;
+  margin-top: 12px;
+}
+
+.ocr-progress div {
+  height: 100%;
+  background: #5b4bff;
+  border-radius: 8px;
+}
+
+/* Output */
+.ocr-result {
+  margin-top: 26px;
+  text-align: left;
+}
+
+.ocr-result textarea {
+  width: 100%;
+  min-height: 180px;
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+}
+
+.copy-btn {
+  margin-top: 10px;
+  padding: 10px 16px;
+  border: none;
+  background: #222;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+/* Clear image button on preview */
+.clear-img-btn {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.clear-img-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Preview container updated to hold clear button */
+.ocr-preview {
+  position: relative;
+  margin-top: 16px;
+}
+/* Clear image button + preview container */
+.ocr-preview {
+  position: relative;
+  margin-top: 16px;
+}
+
+.clear-img-btn {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.clear-img-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Translate / Transliterate section */
+.convert-section {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid #e3e6f5;
+  text-align: left;
+}
+
+.convert-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.convert-header h3 {
+  margin: 0;
+}
+
+.convert-mode-toggle {
+  display: inline-flex;
+  background: #f1f2ff;
+  border-radius: 999px;
+  padding: 2px;
+}
+
+.convert-mode-btn {
+  border: none;
+  background: transparent;
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #555;
+}
+
+.convert-mode-btn.active {
+  background: #5b4bff;
+  color: white;
+}
+
+.convert-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.convert-select {
+  flex: 1;
+  min-width: 140px;
+}
+
+.convert-select label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: #666;
+}
+
+.convert-select select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #ccd1f0;
+  font-size: 13px;
+}
+
+.convert-btn {
+  margin-top: 14px;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  background: #1f1f1f;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.convert-output {
+  margin-top: 14px;
+}
+
+.convert-output h4 {
+  margin: 0 0 6px;
+  font-size: 13px;
+}
+
+.convert-output textarea {
+  width: 100%;
+  min-height: 120px;
+  border-radius: 10px;
+  border: 1px solid #ccd1f0;
+  padding: 10px;
+  font-size: 13px;
+  resize: vertical;
+}

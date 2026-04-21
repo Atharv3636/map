@@ -9,6 +9,7 @@ import { Routes, Route, } from "react-router-dom";
 import Gallery from "./components/gallery/Gallery";
 import ViewAllPage from "./components/pages/viewallpage";
 import Navbar from "./components/Navbar";
+import OCR from "./components/trans/trans";
 
 export default function App() {
   const [statesData, setStatesData] = useState({});
@@ -121,6 +122,7 @@ export default function App() {
       {/* GALLERY PAGE */}
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/:category/:stateName" element={<ViewAllPage statesData={statesData} />} />
+      <Route path="/translation" element={<OCR />} />
       
   </Routes>
       
