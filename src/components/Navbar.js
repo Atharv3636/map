@@ -57,9 +57,6 @@ TravelMate Ai" onClick={() => {
           Translation
         </a>
 
-        <a href="#login" onClick={() => setMenuOpen(false)}>
-          Login
-        </a>
       </nav>
     </header>
   );
