@@ -46,8 +46,7 @@ export default function Navbar({ selectedState, view }) {
           Map
         </a>
 
-        <a href="https://heritage-ui-hazel.vercel.app/
-TravelMate Ai" onClick={() => {
+        <a href="https://heritage-ui-hazel.vercel.app" onClick={() => {
           setMenuOpen(false);
         }}>
           TravelMate AI
