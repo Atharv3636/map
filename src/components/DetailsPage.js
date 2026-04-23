@@ -46,9 +46,15 @@ function SectionHeader({ title, subtitle, onViewAll }) {
         <h2>{title}</h2>
         {subtitle ? <p>{subtitle}</p> : null}
       </div>
-      <button type="button" className="ghost-btn" onClick={onViewAll}>
-        View All
-      </button>
+       {onViewAll && (
+        <button
+          type="button"
+          className="ghost-btn"
+          onClick={onViewAll}
+        >
+          View All
+        </button>
+      )}
     </div>
   );
 }
@@ -156,7 +162,7 @@ export default function DetailsPage({ statesData }) {
         <SectionHeader
           title="Featured Places"
           subtitle={`Explore standout destinations across ${stateLabel}.`}
-          onViewAll={() => navigate(`/Featured/${stateName}`)}
+          // onViewAll={() => navigate(`/Featured/${stateName}`)}
         />
 
         <div className="featured-grid">
