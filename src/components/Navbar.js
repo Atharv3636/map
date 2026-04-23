@@ -36,7 +36,7 @@ export default function Navbar({ selectedState, view }) {
       {/* NAV MENU */}
       <nav className={`nav-right ${menuOpen ? "active" : ""}`}>
         <a
-          href="#maps"
+          href="https://map.aryaavart.in/"
           className={active === "maps" ? "active" : ""}
           onClick={() => {
             setActive("maps");
@@ -53,7 +53,7 @@ TravelMate Ai" onClick={() => {
           TravelMate AI
         </a>
 
-        <a href="/translation" onClick={() => setMenuOpen(false)}>
+        <a href="https://map.aryaavart.in/translation" onClick={() => setMenuOpen(false)}>
           Translation
         </a>
 
